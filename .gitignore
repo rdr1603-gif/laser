@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# Production
+.env*.local
+.env*.local.*
+
+# Vercel
+.vercel/
+
+# Database
+*.db
+*.sqlite
+
+# Uploads
+/uploads/
+
+# Typescript
+*.tsbuildinfo
+
+# Intermediate build files
+.turbo/
+
+# Big files
+!.next/standalone
+
+# Environment variables
+.env
