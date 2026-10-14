@@ -36,6 +36,8 @@
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "onix-laser-gestion-faases1-5",
+    "src/app/panel/pruebas"
   ]
 }

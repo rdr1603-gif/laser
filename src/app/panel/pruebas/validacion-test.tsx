@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useAuth } from "@/stores/ui";
+import { useAuth, useToast } from "@/stores/auth";
 import { db } from "@/lib/db";
-import { useToast } from "@/stores/ui";
+import { Button } from "@/components/Button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/Card";
 
 export default function ValidacionTestPage() {
   const { user } = useAuth();
