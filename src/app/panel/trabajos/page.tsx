@@ -10,21 +10,27 @@ import type { Customer, Job, JobStatus, Material } from "@/lib/types";
 import { useToast } from "@/stores/auth";
 
 const STATUS_LABELS: Record<JobStatus, string> = {
-  pendiente: "Pendiente",
-  presupuestado: "Presupuestado",
+  consulta: "Consulta",
+  presupuesto_pendiente: "Presupuesto pendiente",
   aprobado: "Aprobado",
-  en_produccion: "En Producción",
-  terminado: "Terminado",
+  esperando_seña: "Esperando seña",
+  pendiente_materiales: "Pendiente de materiales",
+  en_produccion: "En producción",
+  en_revision: "En revisión",
+  listo_entregar: "Listo para entregar",
   entregado: "Entregado",
   cancelado: "Cancelado",
 };
 
 const STATUS_COLORS: Record<JobStatus, string> = {
-  pendiente: "bg-gray-100 text-gray-700",
-  presupuestado: "bg-blue-100 text-blue-700",
+  consulta: "bg-purple-100 text-purple-700",
+  presupuesto_pendiente: "bg-blue-100 text-blue-700",
   aprobado: "bg-indigo-100 text-indigo-700",
-  en_produccion: "bg-yellow-100 text-yellow-700",
-  terminado: "bg-green-100 text-green-700",
+  esperando_seña: "bg-orange-100 text-orange-700",
+  pendiente_materiales: "bg-yellow-100 text-yellow-700",
+  en_produccion: "bg-blue-100 text-blue-700",
+  en_revision: "bg-cyan-100 text-cyan-700",
+  listo_entregar: "bg-green-100 text-green-700",
   entregado: "bg-emerald-100 text-emerald-700",
   cancelado: "bg-red-100 text-red-700",
 };
@@ -72,7 +78,7 @@ export default function TrabajosPage() {
       description: "",
       quantity: 1,
       materialId: "",
-      status: "pendiente",
+      status: "consulta",
       totalPrice: 0,
       deposit: 0,
       estimatedDelivery: "",
@@ -152,7 +158,10 @@ export default function TrabajosPage() {
           ? new Date(form.estimatedDelivery).getTime()
           : undefined,
         machineTimeMinutes: form.machineTimeMinutes,
+        prepTimeMinutes: 0,
         materialCost: form.materialCost,
+        laborCost: 0,
+        otherCosts: 0,
         notes: form.notes,
         createdAt: now,
         updatedAt: now,

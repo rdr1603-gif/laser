@@ -80,6 +80,7 @@ export default function SociosPage() {
       await db.partners.add({
         ...form,
         distributions: 0,
+        workPayments: 0,
         capitalBalance: form.initialContribution,
         currentAccountBalance: form.initialContribution,
         active: true,

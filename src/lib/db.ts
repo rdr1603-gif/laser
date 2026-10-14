@@ -8,6 +8,7 @@ import type {
   Quote,
   QuoteItem,
   CashMovement,
+  CashRegister,
   Purchase,
   PurchaseItem,
   Partner,
@@ -15,6 +16,9 @@ import type {
   Expense,
   AppSettings,
   AuditLog,
+  Liquidacion,
+  ReinvestmentFund,
+  PartnerTransaction,
 } from "./types";
 
 class OnixLaserDB extends Dexie {
@@ -26,6 +30,7 @@ class OnixLaserDB extends Dexie {
   quotes!: Table<Quote, number>;
   quoteItems!: Table<QuoteItem, number>;
   cashMovements!: Table<CashMovement, number>;
+  cashRegisters!: Table<CashRegister, number>;
   purchases!: Table<Purchase, number>;
   purchaseItems!: Table<PurchaseItem, number>;
   partners!: Table<Partner, number>;
@@ -33,6 +38,9 @@ class OnixLaserDB extends Dexie {
   expenses!: Table<Expense, number>;
   settings!: Table<AppSettings, number>;
   auditLogs!: Table<AuditLog, number>;
+  liquidaciones!: Table<Liquidacion, number>;
+  reinvestmentFunds!: Table<ReinvestmentFund, number>;
+  partnerTransactions!: Table<PartnerTransaction, number>;
 
   constructor() {
     super("onix-laser-gestion");
@@ -45,6 +53,7 @@ class OnixLaserDB extends Dexie {
       quotes: "++id, number, customerId, status, createdAt",
       quoteItems: "++id, quoteId",
       cashMovements: "++id, type, date, createdAt",
+      cashRegisters: "++id, status, openedAt",
       purchases: "++id, supplierId, status, date, createdAt",
       purchaseItems: "++id, purchaseId",
       partners: "++id, name, active, createdAt",
@@ -52,6 +61,9 @@ class OnixLaserDB extends Dexie {
       expenses: "++id, category, date, paid, createdAt",
       settings: "++id, updatedAt",
       auditLogs: "++id, action, entity, entityId, timestamp",
+      liquidaciones: "++id, period, status, createdAt",
+      reinvestmentFunds: "++id",
+      partnerTransactions: "++id, partnerId, type, date",
     });
   }
 }
@@ -277,3 +289,5 @@ export function formatDateTime(timestamp: number): string {
     minute: "2-digit",
   });
 }
+
+export { CASH_MOVEMENT_LABELS } from "./types";
