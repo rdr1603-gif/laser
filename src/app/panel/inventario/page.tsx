@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/Card";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { Modal } from "@/components/Modal";
-import { db, formatCurrency } from "@/lib/db";
+import { db, formatCurrency, seedMateriales } from "@/lib/db";
 import type { Material } from "@/lib/types";
 import { useToast } from "@/stores/auth";
 
@@ -29,6 +29,7 @@ export default function InventarioPage() {
   }, []);
 
   async function loadMateriales() {
+    await seedMateriales();
     const all = await db.materials.toArray();
     setMateriales(all.sort((a, b) => a.name.localeCompare(b.name)));
   }
