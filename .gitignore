@@ -30,3 +30,4 @@ out/
 
 # Environment variables
 .env
+.vercel
