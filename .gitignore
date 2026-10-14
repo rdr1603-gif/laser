@@ -1,17 +1,13 @@
 # Dependencies
 node_modules/
 
-# Next.js build
+# Next.js build output
 .next/
 out/
 
 # Production
-dist/
-
-# Environment variables
-.env
-.env.local
 .env*.local
+.env*.local.*
 
 # Vercel
 .vercel/
@@ -20,13 +16,17 @@ dist/
 *.db
 *.sqlite
 
-# TypeScript
+# Uploads
+/uploads/
+
+# Typescript
 *.tsbuildinfo
 
-# OS
-.DS_Store
-Thumbs.db
+# Intermediate build files
+.turbo/
 
-# IDE
-.vscode/
-.idea/
+# Big files
+!.next/standalone
+
+# Environment variables
+.env
